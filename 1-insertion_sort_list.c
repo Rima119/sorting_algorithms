@@ -7,11 +7,12 @@
  */
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *curr = *list, *node, *swap;
+	listint_t *curr, *node, *swap;
 
 	if (list == NULL || *list == NULL || (*list)->next == NULL)
 		return;
 
+	curr = *list;
 	while ((curr = curr->next))
 	{
 		swap = curr;
@@ -20,7 +21,7 @@ void insertion_sort_list(listint_t **list)
 			node = swap->prev;
 			if (node->prev)
 				node->prev->next = swap;
-			else if (swap->next)
+			if (swap->next)
 				swap->next->prev = node;
 			else
 				*list = swap;
