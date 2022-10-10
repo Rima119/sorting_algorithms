@@ -19,7 +19,7 @@ void swap_node(int *node1, int *node2)
  * @low: input low index
  * @high: input high index
  */
-int partition(int *array, size_t size, int low, int high)
+int partition(int *array, int low, int high, size_t size)
 {
 	int pivot = array[high], a = low, b;
 
@@ -53,7 +53,7 @@ void quickSort(int *arr, size_t size, int low, int high)
 
 	if (low < high)
 	{
-		p = partition(arr, size, low, high);
+		p = partition(arr, low, high, size);
 		quickSort(arr, size, low, p - 1);
 		quickSort(arr, size, p + 1, high);
 	}
