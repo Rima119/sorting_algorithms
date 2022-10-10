@@ -47,15 +47,15 @@ int partition(int *array, int low, int high, size_t size)
  * @low: input low index
  * @high: input high index
  */
-void quickSort(int *arr, size_t size, int low, int high)
+void quickSort(int *arr, int low, int high, size_t size)
 {
 	int p;
 
 	if (low < high)
 	{
 		p = partition(arr, low, high, size);
-		quickSort(arr, size, low, p - 1);
-		quickSort(arr, size, p + 1, high);
+		quickSort(arr, low, p - 1, size);
+		quickSort(arr, p + 1, high, size);
 	}
 }
 
