@@ -33,9 +33,9 @@ void selection_sort(int *array, size_t size)
 			if (array[c] < array[b])
 				b = c;
 		}
-		if (c != a)
+		if (b != a)
 		{
-			swap(&array[c], &array[a]);
+			swap(&array[b], &array[a]);
 			print_array(array, size);
 		}
 	}
