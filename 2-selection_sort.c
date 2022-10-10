@@ -5,7 +5,7 @@
  * @node1: a pointer to the first node of the list
  * @node2: a pointer to the second node of the list
  */
-void swap(int *node1, int *node2)
+void swap_node(int *node1, int *node2)
 {
 	int a = *node1;
 	*node1 = *node2;
@@ -35,7 +35,7 @@ void selection_sort(int *array, size_t size)
 		}
 		if (b != a)
 		{
-			swap(&array[b], &array[a]);
+			swap_node(&array[b], &array[a]);
 			print_array(array, size);
 		}
 	}
