@@ -18,6 +18,7 @@ void swap_node(int *node1, int *node2)
  * @size: size of the array
  * @low: input low index
  * @high: input high index
+ * Return: new pivot
  */
 int partition(int *array, int low, int high, size_t size)
 {
