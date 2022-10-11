@@ -16,12 +16,12 @@ void shell_sort(int *array, size_t size)
 	for (gap = 1; gap < (size / 3);)
 		gap = gap * 3 + 1;
 	
-	for (; gap >= 1; gap /= 3)
+	for (; gap > 0; gap = (gap - 1) / 3)
 	{
 		for (a = gap; a < size; a++)
 		{
 			tmp = array[a];
-			for (b = a; b >= gap && tmp <= array[b - gap]; b -= gap)
+			for (b = a; b >= gap && array[b - gap] >= tmp; b -= gap)
 				array[b] = array[b - gap];
 			array[b] = tmp;
 		}
