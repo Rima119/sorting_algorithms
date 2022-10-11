@@ -8,14 +8,15 @@
  */
 void shell_sort(int *array, size_t size)
 {
-	size_t gap = 0, a, b;
+	size_t gap, a, b;
 	int tmp;
 
 	if (array == NULL || size < 2)
 		return;
 	for (gap = 1; gap < (size / 3);)
 		gap = gap * 3 + 1;
-	for (; gap > 0; gap = (gap - 1) / 3)
+	
+	for (; gap >= 1; gap /= 3)
 	{
 		for (a = gap; a < size; a++)
 		{
