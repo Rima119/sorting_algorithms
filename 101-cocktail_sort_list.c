@@ -3,21 +3,20 @@
 /**
  * swap_node - swaps nodes in a doubly linked list
  * @head: a pointer to the head of the list
- * @node1: a pointer to the first node of the list
- * @node2: a pointer to the second node of the list
+ * @node: a pointer to the node
  */
-void swap_node(listint_t **head, listint_t *node1, listint_t *node2)
+void swap_node(listint_t **head, listint_t **node)
 {
-	if ((node1->prev) != NULL)
-		node1->prev->next = node2;
+	if (((*node)->next->next) != NULL)
+		(*node)->next->next->prev = *node;
+	(*node)->next->next = *node;
+	(*node)->next->prev = (*node)->prev;
+	if (((*node)->prev) != NULL)
+		(*node)->prev->next = (*node)->next;
 	else
-		*head = node2;
-	node1->prev = node2;
-	node1->next = node2->next;
-	node2->prev = node1->prev;
-	node2->next = node1;
-	if ((node2->next) != NULL)
-		node2->next->prev = node1;
+		*head = (*node)->next;
+	(*node)->prev = (*node)->next;
+	*node = (*node)->next;
 }
 
 /**
@@ -27,38 +26,38 @@ void swap_node(listint_t **head, listint_t *node1, listint_t *node2)
  */
 void cocktail_sort_list(listint_t **list)
 {
-	listint_t *p;
+	listint_t *tmp;
 	int swapped = 0;
 
-	p = *list;
+	tmp = *list;
 	while (!swapped)
 	{
 		swapped = 1;
-		while (p->next)
+		while (tmp->next)
 		{
-			if (p->n > p->next->n)
+			if (tmp->n > tmp->next->n)
 			{
 				swapped = 0;
-				swap_node(list, p, p->next);
+				swap_node(list, &tmp);
 				print_list(*list);
 			}
 			else
-				p = p->next;
+				tmp = tmp->next;
 		}
 		if (swapped)
 			break;
-		p = p->prev;
-		while (p->prev)
+		tmp = tmp->prev;
+		while (tmp->prev)
 		{
-			if (p->n < p->prev->n)
+			if (tmp->n < tmp->prev->n)
 			{
 				swapped = 0;
-				p = p->prev;
-				swap_node(list, p->prev, p);
+				tmp = tmp->prev;
+				swap_node(list, &tmp);
 				print_list(*list);
 			}
 			else
-				p = p->prev;
+				tmp = tmp->prev;
 		}
 	}
 }
