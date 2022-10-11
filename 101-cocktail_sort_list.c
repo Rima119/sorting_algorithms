@@ -28,34 +28,37 @@ void swap_node(listint_t **head, listint_t *node1, listint_t *node2)
 void cocktail_sort_list(listint_t **list)
 {
 	listint_t *p;
-	int swapped;
+	int swapped = 0;
 
-	if (!list || !*list || !(*list)->next)
-		return;
-	do {
-		swapped = 0;
-		for (p = *list; p->next != NULL; p = p->next)
+	p = *list;
+	while (!swapped)
+	{
+		swapped = 1;
+		while (p->next)
 		{
 			if (p->n > p->next->n)
 			{
+				swapped = 0;
 				swap_node(list, p, p->next);
 				print_list(*list);
-				swapped = 1;
-				p = p->prev;
 			}
+			else
+				p = p->next;
 		}
-		if (swapped == 0)
+		if (swapped)
 			break;
-		swapped = 0;
-		for (p = *list; p->prev != NULL; p = p->prev)
+		p = p->prev;
+		while (p->prev)
 		{
 			if (p->n < p->prev->n)
 			{
+				swapped = 0;
+				p = p->prev;
 				swap_node(list, p->prev, p);
-				swapped = 1;
 				print_list(*list);
-				p = p->next;
 			}
+			else
+				p = p->prev;
 		}
-	} while (swapped);
+	}
 }
