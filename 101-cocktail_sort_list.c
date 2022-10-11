@@ -6,7 +6,7 @@
  * @node1: a pointer to the first node of the list
  * @node2: a pointer to the second node of the list
  */
-void swap_node(listint_t **head, listint_t *node1, listint_t *node2)
+void swap_node(listint_t *node1, listint_t *node2, listint_t **head)
 {
 	if ((node1->prev) != NULL)
 		node1->prev->next = node2;
@@ -37,7 +37,7 @@ void cocktail_sort_list(listint_t **list)
 		{
 			if (p->n > p->next->n)
 			{
-				swap_node(list, p, p->next);
+				swap_node(p, p->next, list);
 				print_list(*list);
 				swapped = 1;
 				p = p->prev;
@@ -50,7 +50,7 @@ void cocktail_sort_list(listint_t **list)
 		{
 			if (p->n < p->prev->n)
 			{
-				swap_node(list, p->prev, p);
+				swap_node(p->prev, p, list);
 				swapped = 1;
 				print_list(*list);
 				p = p->next;
