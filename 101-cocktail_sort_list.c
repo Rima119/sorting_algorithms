@@ -15,6 +15,7 @@ void swap_node(listint_t *node1, listint_t *node2, listint_t **head)
 	node1->prev = node2;
 	node1->next = node2->next;
 	node2->prev = node1->prev;
+	node2->next = node1;
 	if ((node2->next) != NULL)
 		node2->next->prev = node1;
 }
@@ -43,7 +44,7 @@ void cocktail_sort_list(listint_t **list)
 				p = p->prev;
 			}
 		}
-		if (swapped)
+		if (swapped == 0)
 			break;
 		swapped = 0;
 		for (; p->prev != NULL; p = p->prev)
